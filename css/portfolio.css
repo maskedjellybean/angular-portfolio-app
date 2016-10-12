@@ -1,0 +1,425 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* card flip effect tutorial: http://css3.bradshawenterprises.com/flip/ */
+
+/* aspect ratio for height using padding demo: http://dabblet.com/gist/2590942 */
+
+/* General */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: helvetica, verdana, arial, sans-serif;
+  font-size: 14px;
+  background: #c9c9c9;
+  -webkit-text-size-adjust: none;
+}
+body.overflow-hidden {
+  overflow-x: hidden;
+}
+
+a {
+  color: #0E7DAA;
+  text-decoration: none;
+}
+a:visited {
+  color: #0E7DAA;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1 ,h2 ,h3 {
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  line-height: 1.6em;
+}
+
+.main-content-container {
+  width: 99.95%;
+}
+
+/* Loading animation src: http://tobiasahlin.com/spinkit/ */
+
+.loading {
+  width: 120px;
+  margin: 100px auto;
+}
+
+.loading__animation {
+  width: 90px;
+  height: 70px;
+  margin: 0 auto;
+  background-color: #5F5F5F;
+
+  -webkit-animation: sk-rotateplane .7s infinite;
+  animation: sk-rotateplane .7s infinite;
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(120px) rotateY(-180.1deg) rotateX(0deg);
+    -webkit-transform: perspective(120px) rotateY(-180.1deg) rotateX(0deg);
+  }
+}
+
+.loading__text {
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+}
+
+/* Header */
+
+.header-links {
+  margin: 0;
+  padding: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-padding-start: 0;
+}
+
+/* Main content */
+
+.main-content-container {
+  max-width: 1410px;
+  margin: 0 auto;
+}
+
+.main-content {
+  opacity: 0;
+  transition: opacity, 1.6s;
+  -webkit-transition: opacity, 1.6s;
+  -moz-transition: opacity, 1.6s;
+}
+.main-content.visible {
+  opacity: 1;
+}
+
+/* Rows */
+
+/* Active row */
+.active-row {
+  z-index: 40;
+}
+
+/* Cards */
+
+.card-container {
+  position: relative;
+  float: left;
+  margin: 0;
+  z-index: 0;
+  overflow: visible;
+  opacity: 1;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-transition: opacity .4s linear;
+  -o-transition: opacity .4s linear;
+  -webkit-transition: opacity .4s linear;
+  transition: opacity .4s linear;
+  -webkit-transform-style: preserve-3d;
+}
+/* Two row */
+.two-row .card-container {
+  width: 50%;
+  padding-top: 10px;
+}
+.two-row .card-container.left {
+  padding-right: 5px;
+}
+.two-row .card-container.right {
+  padding-left: 5px;
+}
+/* Three row */
+.three-row .card-container {
+  width: 33.33%;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* Transform modifiers */
+.card-container.transforming {
+  z-index: 40;
+}
+.card-container.description-active {
+  z-index: 1;
+}
+
+.card-container-inner {
+  position: relative;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  perspective: 1200px;
+}
+
+.flip-card {
+  width: 100%;
+  height: auto;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border: none;
+}
+/* Landscape image ratio */
+.image-ratio--landscape .flip-card {
+  padding-bottom: 68.2%;
+}
+/* Portrait image ratio */
+.image-ratio--portrait .flip-card {
+  padding-bottom: 125.3%;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-transition: all .4s linear;
+  -o-transition: opacity .4s linear;
+  -webkit-transition: all .4s linear;
+  transition: all .4s linear;
+}
+
+.face.back {
+  -moz-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  color: #666666;
+}
+
+/* Transform modifiers */
+.flip-card.transform {
+  cursor: default;
+}
+
+.flip-card.transform.not-flippable {
+  cursor: pointer;
+}
+
+.flip-card.transform .face.front {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flip-card.transform .face.back {
+  -webkit-transform: rotateY(360deg);
+  -moz-transform: rotateY(360deg);
+  transform: rotateY(360deg);
+}
+
+.piece-image {
+  width: 100%;
+}
+
+/* Close button */
+
+.close-button {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.close-button-inner {
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -moz-transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+  width: 100%;
+  height: 100%;
+}
+
+.close-button:hover .close-button-inner {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.close-button .face {
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/close-icon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.close-button .front {
+  background-color: #A0A0A0;
+}
+
+.close-button .back {
+  background-color: #D65F44;
+}
+
+/* Info icon hover */
+
+.flip-help {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  float: right;
+  width: 100%;
+  z-index: 50;
+  opacity: 0;
+  -webkit-transition: opacity, .3s;
+  -moz-transition: opacity, .3s;
+  transition: opacity, .3s;
+  pointer-events: none;
+  font-size: 0.8em;
+  text-align: center;
+  color: #999999;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+.flip-help.hover {
+  opacity: 1;
+}
+
+.flip-help img {
+  position: absolute;
+  top: 36%;
+  left: 36%;
+  width: 27%;
+  opacity: 0.6;
+}
+
+/* Description */
+
+.piece-date,
+.piece-programs,
+.piece-title {
+  padding-right: 35px;
+}
+
+.piece-date {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.piece-programs {
+  display: block;
+  font-style: italic;
+}
+
+.description {
+  position: relative;
+  height: 100%;
+  padding: 20px;
+  background: white;
+  overflow-y: auto;
+}
+
+.piece-title {
+  margin: 0 auto;
+  line-height: 1.7em;
+  text-align: left;
+  color: #0E7DAA;
+}
+
+.piece-description-text {
+  margin-top: 1.5em;
+}
+
+.piece-description-text p {
+  margin: 0;
+}
+
+/* ACTIONS */
+
+img.hide {
+  display: none;
+}
+.hide {
+  display: none;
+}
+
+.fade {
+  opacity: .3;
+}
+
+.not-flippable {
+  pointer-events: none;
+  cursor: pointer;
+}
+
+/* Bug fixes */
+
+/* hack to fix Opera displaying height 100% actually correct */
+
+x:-o-prefocus, .face {
+  height: 90%;
+  overflow: hidden;
+}
+
+/* Mobile/Flexslider */
+
+.mobile-row .flexslider {
+  margin: 0;
+  border: none;
+}
+
+.mobile-row .flexslider-container {
+  width: 100%;
+  margin: 20px auto 0 auto;
+}
+
+.mobile-row .flex-control-nav {
+  bottom: -30px;
+  z-index: 30;
+}
+
+.mobile-row .flex-control-paging li a {
+  width: 15px;
+  height: 15px;
+}
+
+.mobile-row .flex-direction-nav {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header-info {
+    display: none;
+  }
+
+  .mobile-row .description {
+    height: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}

@@ -1,0 +1,107 @@
+<!-- left piece -->
+
+<div class="card-container left" ng-class="{'transforming':row.toggles.0.transforming, 'description-active':row.toggles.0.descriptionActive, 'fade':row.toggles.0.fade}">
+  <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 0)">
+    <div class="flip-card" ng-class="{'transform':row.toggles.0.transform, 'not-flippable':row.toggles.0.notFlippable}">
+
+      <div class="front face">
+        <img class="piece-image primary" ng-hide="row.toggles.0.hidePrimaryImg" src="{{row.0.primary_img}}"  ng-mouseover="row.toggles.0.frontHover = true"  ng-mouseleave="row.toggles.0.frontHover = false" />
+      </div>
+
+      <div class="back face">
+        <div class="description" ng-show="row.toggles.0.descriptionActive">
+          <div class="close-button" ng-click="showMoreToggle($event, $index, 0, true)">
+            <div class="close-button-inner">
+              <div class="front face"></div>
+              <div class="back face"></div>
+            </div>
+          </div>
+          <span class="piece-date" ng-if="row.0.date"> {{row.0.date}} </span>
+          <h3 class="piece-title" ng-if="row.0.title"> {{row.0.title}} </h3>
+          <span class="piece-programs" ng-if="row.0.programs"> {{row.0.programs}} </span>
+          <div class="piece-description-text">
+            <p> {{row.0.description}} </p>
+          </div>
+        </div>
+        <img class="piece-image nbr-center" ng-hide="row.toggles.0.hideBackNbrImg_1" src="{{row.0.nbr_imgs_3_row.0}}" />
+        <img class="piece-image nbr-right" ng-hide="row.toggles.0.hideBackNbrImg_2" src="{{row.0.nbr_imgs_3_row.1}}"/>
+      </div>
+
+    </div>
+    <div class="flip-help" ng-class="{'hover':row.toggles.0.frontHover}">
+      <img src="{{app_path + 'images/info--' + theme + '.png'}}" />
+    </div>
+  </div>
+</div>
+
+<!-- center piece -->
+
+<div class="card-container center" ng-class="{'transforming':row.toggles.1.transforming, 'description-active':row.toggles.1.descriptionActive, 'fade':row.toggles.1.fade}">
+  <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 1)">
+    <div class="flip-card" ng-class="{'transform':row.toggles.1.transform, 'not-flippable':row.toggles.1.notFlippable}">
+
+      <div class="front face">
+        <img class="piece-image primary" ng-hide="row.toggles.1.hidePrimaryImg" src="{{row.1.primary_img}}" ng-mouseover="row.toggles.1.frontHover = true"  ng-mouseleave="row.toggles.1.frontHover = false"  />
+      </div>
+
+      <div class="back face">
+        <div class="description" ng-show="row.toggles.1.descriptionActive">
+          <div class="close-button" ng-click="showMoreToggle($event, $index, 1, true)">
+            <div class="close-button-inner">
+              <div class="front face"></div>
+              <div class="back face"></div>
+            </div>
+          </div>
+          <span class="piece-date" ng-if="row.1.date"> {{row.1.date}} </span>
+          <h3 class="piece-title" ng-if="row.1.title"> {{row.1.title}} </h3>
+          <span class="piece-programs" ng-if="row.1.programs"> {{row.1.programs}} </span>
+          <div class="piece-description-text">
+            <p> {{row.1.description}} </p>
+          </div>
+        </div>
+        <img class="piece-image nbr-left" ng-hide="row.toggles.1.hideBackNbrImg_0" src="{{row.1.nbr_imgs_3_row.0}}"/>
+        <img class="piece-image nbr-right" ng-hide="row.toggles.1.hideBackNbrImg_2"src="{{row.1.nbr_imgs_3_row.1}}"/>
+      </div>
+
+    </div>
+    <div class="flip-help" ng-class="{'hover':row.toggles.1.frontHover}">
+      <img src="{{app_path + 'images/info--' + theme + '.png'}}" />
+    </div>
+  </div>
+</div>
+
+<!-- right piece -->
+
+<div class="card-container right" ng-class="{'transforming':row.toggles.2.transforming, 'description-active':row.toggles.2.descriptionActive, 'fade':row.toggles.2.fade}">
+  <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 2)">
+    <div class="flip-card" ng-class="{'transform':row.toggles.2.transform, 'not-flippable':row.toggles.2.notFlippable}">
+
+      <div class="front face">
+        <img class="piece-image primary" ng-hide="row.toggles.2.hidePrimaryImg" src="{{row.2.primary_img}}" ng-mouseover="row.toggles.2.frontHover = true"  ng-mouseleave="row.toggles.2.frontHover = false"  />
+      </div>
+
+      <div class="back face">
+        <div class="description" ng-show="row.toggles.2.descriptionActive">
+          <div class="close-button" ng-click="showMoreToggle($event, $index, 2, true)">
+            <div class="close-button-inner">
+              <div class="front face"></div>
+              <div class="back face"></div>
+            </div>
+          </div>
+          <span class="piece-date" ng-if="row.2.date"> {{row.2.date}} </span>
+          <h3 class="piece-title" ng-if="row.2.title"> {{row.2.title}} </h3>
+          <span class="piece-programs" ng-if="row.2.programs"> {{row.2.programs}} </span>
+          <div class="piece-description-text">
+            <p> {{row.2.description}} </p>
+          </div>
+        </div>
+        <img class="piece-image nbr-left" ng-hide="row.toggles.2.hideBackNbrImg_0" src="{{row.2.nbr_imgs_3_row.0}}"/>
+        <img class="piece-image nbr-center" ng-hide="row.toggles.2.hideBackNbrImg_1"src="{{row.2.nbr_imgs_3_row.1}}"/>
+      </div>
+
+    </div>
+    <div class="flip-help" ng-class="{'hover':row.toggles.2.frontHover}">
+      <img src="{{app_path + 'images/info--' + theme + '.png'}}" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+/* Fonts */
+
+@font-face {
+  font-family: 'walkway-expand';
+  src: url('../../fonts/walkway_expand_black-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../../fonts/walkway_expand_black-webfont.woff') format('woff'),
+       url('../../fonts/walkway_expand_black-webfont.ttf')  format('truetype'),
+       url('../../fonts/walkway_expand_black-webfont.svg#webfont') format('svg');
+}
+
+/* General */
+
+body {
+  font-size: 16px;
+  background: #C9C9C9;
+}
+
+a {
+  color: #0E7DAA;
+}
+a:visited {
+  color: #0E7DAA;
+}
+
+/* Loading animation */
+
+.loading__animation {
+  background-color: #0E7DAA;
+}
+
+.loading__text {
+  color: white;
+}
+
+/* Header */
+
+.header-expand {
+  width: 100%;
+  background: #067CA8;
+  box-shadow: 0 -5px 23px 5px #777;
+}
+
+.header {
+  max-width: 1370px;
+  height: 90px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  z-index: 30;
+  overflow: auto;
+}
+
+.logo {
+  width: 100px;
+  float: left;
+}
+
+.logo img {
+  margin-top: -3px;
+  margin-left: -3px;
+}
+
+.header-info {
+  float: right;
+  font-size: .8em;
+}
+
+.header .name {
+  display: block;
+  margin: 0;
+  padding: 0 3px 0 13px;
+  border-bottom: 2px solid #999;
+  font-family: walkway-expand;
+}
+
+.header .name h1 {
+  margin: 0;
+}
+
+.first-name {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: #999999 solid 2px;
+  color: white;
+}
+
+.last-name {
+  color: #B7B5B5;
+}
+
+.header-links {
+  margin: 0;
+  padding: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-padding-start: 0;
+}
+
+.header-links li {
+  float: left;
+  padding: 5px 13px;
+  list-style: none;
+  background: url(../../images/bullet.png) left center no-repeat;
+  color: white;
+}
+
+.header-links li a {
+  color: white;
+}
+
+.header-links li a:hover {
+  color: white;
+}
+
+/* Main content */
+
+.main-content-container {
+  max-width: 1370px;
+}
+
+/* Cards */
+
+.card-container {
+  padding-left: 15px;
+  padding-bottom: 30px;
+}
+
+.flip-card > .front.face,
+.flip-card > .back.face {
+  box-shadow: 0 14px 30px -8px #777777;
+}
