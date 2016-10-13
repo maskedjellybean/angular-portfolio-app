@@ -1,6 +1,7 @@
 /**
+ * @file
  * Main file for Angular Portfolio App.
- * Contains controllers.
+ * Contains Controllers.
  */
 
 (function() {
@@ -8,20 +9,22 @@
 
   /**
    * Parent Controller.
-   * Set on <body> and contains all other controllers.
+   * Must be set on <body> and contains all other Controllers.
    */
   .controller('PortfolioController', ['$scope', '$timeout', '$window', 'rowsFactory', 'appConfig', function ($scope, $timeout, $window, rowsFactory, appConfig) {
 
     $scope.overflow_hidden = false;
-    // Retrieve app config from provider.
+    // Retrieve app config from Provider.
     var config = appConfig.getConfig();
-    // Assign config to scope so it can be accessed in template.
+    // Assign app config to $scope so it can be accessed in View.
     $scope.theme = config.theme;
     $scope.image_ratio = config.image_ratio;
     $scope.pieces_per_row = config.pieces_per_row;
     $scope.app_path = config.app_path;
 
-    // Call factory, returns obj of pieces divided into rows
+    // Call Factory, returns obj of portfolio pieces data divided into rows.
+    // Also contains "toggles" which will be bound to the View and control CSS classes.
+    // This will be the model for all Controllers.
     if (!$scope.rows) {
       rowsFactory.getRows()
       .then(function(rows) {
@@ -29,7 +32,7 @@
       });
     }
 
-    // Bind to window resize, determine which controller/views to use
+    // Bind to window resize, determine which Controller/Views to use.
     $scope.$watch(function() {
       return $window.innerWidth;
     }, function(value) {
@@ -42,9 +45,9 @@
    * Used for large browser size.
    */
   .controller('desktopController', ['$scope', '$q', '$timeout', '$interval', '$window', 'appConfig', function ($scope, $q, $timeout, $interval, $window, appConfig) {
-    // Retrieve app config from provider.
+    // Retrieve app config from Provider.
     var config = appConfig.getConfig();
-    // True whenever any piece is active (show more is clicked).
+    // True whenever any piece is active.
     var show_more_active = false;
     // Keep track of currently active row and piece, false if no active.
     var active_row = false;
@@ -53,16 +56,16 @@
     var scroll_timeout = false;
     var flip_start_counter = 0;
     var flip_complete_counter = 0;
-    // True if any pieces are currently in the process of transforming/flipping.
+    // True if any pieces are currently in the process of flipping.
     $scope.curr_transforming = false;
 
     /**
-     * See more functionality. Calls flipping function, calls function to fade rows.
-     * Public Scope function available in View.
-     * @param  event: The event object. Can also be null.
-     * @param  origin_row: Row that contains piece that was clicked to trigger flipping.
-     * @param  origin_piece: Piece that was clicked to trigger flipping.
-     * @param  origin_close_button: Boolean. Whether or not flipping was triggered by close button.
+     * Flipping functionality trigger. Calls functions to flip pieces and fade rows.
+     * Public $scope function available in View.
+     * @param {event} event - The event object. Can also be null.
+     * @param {integer} origin_row - Row that contains piece that was clicked to trigger flipping.
+     * @param {integer} origin_piece - Piece that was clicked to trigger flipping.
+     * @param {boolean} origin_close_button - Whether or not flipping was triggered by close button.
      */
     $scope.showMoreToggle = function(event, origin_row, origin_piece, origin_close_button) {
       if (event) {
@@ -70,7 +73,7 @@
       }
       // If no pieces are currently in the process of flipping.
       if (!$scope.curr_transforming) {
-        // If no piece is open, open clicked piece.
+        // If no piece is active, open clicked piece.
         if (!show_more_active) {
           show_more_active = true;
           active_row = origin_row;
@@ -78,18 +81,17 @@
           $scope.rows[config.ppr_key][active_row]['toggles']['active_row'] = true;
           active_scroll_pos = $window.pageYOffset;
 
-          // Flip active piece
+          // Flip active piece.
           flipActiveToBack(active_row, active_piece).then(flipCompleteTracker);
-          // Flip neighbor piece(s)
+          // Flip neighbor piece(s).
           for (var p = 0; p <= config.pieces_per_row_zero; p++) {
             if (p != active_piece) {
               flipFrontToNeighbor(active_row, active_piece, p).then(flipCompleteTracker);
             }
           }
 
-          // Fade other pieces
+          // Fade other pieces.
           for (var r = 0; r <= config.row_count_zero; r++) {
-            // If not active row
             if (r != active_row) {
               var toggles = $scope.rows[config.ppr_key][r]['toggles'];
               for (var p = 0; p <= config.pieces_per_row_zero; p++) {
@@ -99,22 +101,21 @@
             }
           }
         }
-        // Close open piece
+        // Close open piece.
         else {
           // Don't allow click on active piece to trigger flipping.
           if (origin_close_button || origin_row != active_row || (origin_row == active_row && origin_piece != active_piece)) {
-            // Flip neighbor piece(s)
+            // Flip neighbor piece(s).
             for (var p = 0; p <= config.pieces_per_row_zero; p++) {
               if (p != active_piece) {
                 flipNeighborToFront(active_row, active_piece, p).then(flipCompleteTracker);
               }
             }
-            // Flip active piece
+            // Flip active piece.
             flipActiveToFront(active_row, active_piece).then(flipCompleteTracker);
 
-            // Unfade other pieces
+            // Unfade other pieces.
             for (var r = 0; r <= config.row_count_zero; r++) {
-              // If not active row
               if (r != active_row) {
                 var toggles = $scope.rows[config.ppr_key][r]['toggles'];
                 for (var p = 0; p <= config.pieces_per_row_zero; p++) {
@@ -124,7 +125,7 @@
               }
             }
 
-            // Wait til flipping is complete to reset scope and global vars.
+            // Wait until flipping is complete to reset $scope and global vars.
             $timeout(function() {
               $scope.rows[config.ppr_key][active_row]['toggles']['active_row'] = false;
               show_more_active = false;
@@ -184,7 +185,8 @@
           flip_start_counter = 0;
           flip_complete_counter = 0;
           $scope.curr_transforming = false;
-          // Return overflow-y to <body>. Fixes firefox bug where scrollbars appear for a split second.
+          // Return overflow-y to <body>.
+          // Fixes firefox bug where scrollbars appear for a split second.
           $scope.$parent.overflow_hidden = false;
         }, 50);
       }
@@ -193,8 +195,8 @@
     /**
      * Flips active piece from back/description to front/primary image. (Close active piece).
      * Private function.
-     * @param  active_row: The active row at the time function was called.
-     * @param  active_piece: The active piece at the time the function was called.
+     * @param {integer} active_row - The active row at the time function was called.
+     * @param {integer} active_piece - The active piece at the time the function was called.
      */
     function flipActiveToFront(active_row, active_piece) {
       flipStartTracker();
@@ -215,8 +217,8 @@
     /**
      * Flips active piece from front/primary image to back/description. (Open active piece).
      * Private function.
-     * @param  active_row: The active row at the time function was called.
-     * @param  active_piece: The active piece at the time the function was called.
+     * @param {integer} active_row - The active row at the time function was called.
+     * @param {integer} active_piece - The active piece at the time the function was called.
      */
     function flipActiveToBack(active_row, active_piece) {
       flipStartTracker();
@@ -235,21 +237,21 @@
     /**
      * Flips non-active piece from front/primary image to back/neighbor image.
      * Private function.
-     * @param  active_row: The active row at the time function was called.
-     * @param  active_piece: The active piece at the time the function was called.
-     * @param  piece: The piece that is being flipped.
+     * @param {integer} active_row - The active row at the time function was called.
+     * @param {integer} active_piece - The active piece at the time the function was called.
+     * @param {integer} piece - The piece that is being flipped.
      */
     function flipFrontToNeighbor(active_row, active_piece, piece) {
       flipStartTracker();
       var deferred = $q.defer();
       var toggles = $scope.rows[config.ppr_key][active_row]['toggles'];
       $timeout(function() {
-        // Show neighbor image on back face
+        // Show neighbor image on back face.
         toggles[piece]['hideBackNbrImg_' + active_piece.toString()] = false;
-        // Hide description
+        // Hide description.
         toggles[piece].descriptionActive = false;
         toggles[piece].notFlippable = true;
-        // Flip
+        // Flip.
         transformingClassToggle(active_row, piece);
         $timeout(function() {
         }, config.transition_time).then(function() {
@@ -262,20 +264,20 @@
     /**
      * Flips non-active piece from back/neighbor image to front/primary image.
      * Private function.
-     * @param  active_row: The active row at the time function was called.
-     * @param  active_piece: The active piece at the time the function was called.
-     * @param  piece: The piece that is being flipped.
+     * @param {integer} active_row - The active row at the time function was called.
+     * @param {integer} active_piece - The active piece at the time the function was called.
+     * @param {integer} piece - The piece that is being flipped.
      */
     function flipNeighborToFront(active_row, active_piece, piece) {
       flipStartTracker();
       var deferred = $q.defer();
       var toggles = $scope.rows[config.ppr_key][active_row]['toggles'];
-      // Return Primary and hide neighboring images
+      // Return Primary and hide neighboring images.
       toggles[piece].descriptionActive = false;
       toggles[piece].notFlippable = false;
       transformingClassToggle(active_row, piece);
       $timeout(function() {
-        // Hide neighbor image after flip
+        // Hide neighbor image after flip.
         toggles[piece]['hideBackNbrImg_' + active_piece.toString()] = true;
         deferred.resolve();
       }, config.transition_time);
@@ -285,14 +287,14 @@
     /**
      * Adds and removes CSS class during flipping animation.
      * Private function.
-     * @param  active_row: The active row at the time function was called.
-     * @param  piece: The piece to apply CSS classes to.
+     * @param {integer} active_row - The active row at the time function was called.
+     * @param {integer} piece - The piece to apply CSS classes to.
      */
     function transformingClassToggle(active_row, piece) {
       var toggles = $scope.rows[config.ppr_key][active_row]['toggles'];
       toggles[piece].transforming = true;
       toggles[piece].transform = toggles[piece].transform ? false : true;
-      // Hide flip help
+      // Hide flip help.
       toggles[piece].frontHover = false;
 
       $timeout(function() {
@@ -303,6 +305,7 @@
 
   /**
    * Mobile Controller.
+   * Mobile View is mostly handled by Flexslider Angular library.
    */
   .controller('mobileController', ['$scope', '$window', function ($scope, $window) {
 
