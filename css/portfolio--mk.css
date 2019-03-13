@@ -16,16 +16,16 @@ body {
 }
 
 a {
-  color: #0E7DAA;
+  color: #207243;
 }
 a:visited {
-  color: #0E7DAA;
+  color: #207243;
 }
 
 /* Loading animation */
 
 .loading__animation {
-  background-color: #0E7DAA;
+  background-color: #207243;
 }
 
 .loading__text {
