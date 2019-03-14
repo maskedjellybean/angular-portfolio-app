@@ -2,10 +2,10 @@
 
 @font-face {
   font-family: 'walkway-expand';
-  src: url('../../fonts/walkway_expand_black-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/walkway_expand_black-webfont.woff') format('woff'),
-       url('../../fonts/walkway_expand_black-webfont.ttf')  format('truetype'),
-       url('../../fonts/walkway_expand_black-webfont.svg#webfont') format('svg');
+  src: url('../../../fonts/walkway_expand_black-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../../../fonts/walkway_expand_black-webfont.woff') format('woff'),
+       url('../../../fonts/walkway_expand_black-webfont.ttf')  format('truetype'),
+       url('../../../fonts/walkway_expand_black-webfont.svg#webfont') format('svg');
 }
 
 /* General */
