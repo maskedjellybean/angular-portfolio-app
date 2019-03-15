@@ -52,7 +52,7 @@ a:visited {
 
 .header-info {
   float: right;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-right: 18px;
   font-size: .8em;
 }
@@ -71,13 +71,27 @@ a:visited {
 }
 
 .first-name {
+  position: relative;
+  display: inline-block;
+  height: 38px;
   margin-right: 10px;
-  padding-right: 10px;
-  border-right: #999999 solid 2px;
+  padding-bottom: 8px;
+  padding-right: 12px;
   color: white;
 }
 
+.first-name:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 40px;
+  width: 2px;
+  background-color: #999999;
+}
+
 .last-name {
+  display: inline-block;
   color: #B7B5B5;
 }
 

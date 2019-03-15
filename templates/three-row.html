@@ -4,11 +4,11 @@
   <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 0)">
     <div class="flip-card" ng-class="{'transform':row.toggles.0.transform, 'not-flippable':row.toggles.0.notFlippable}">
 
-      <div class="front face">
+      <div class="front face flip-card__face">
         <img class="piece-image primary" ng-hide="row.toggles.0.hidePrimaryImg" src="{{row.0.primary_img}}"  ng-mouseover="row.toggles.0.frontHover = true"  ng-mouseleave="row.toggles.0.frontHover = false" />
       </div>
 
-      <div class="back face">
+      <div class="back face flip-card__face">
         <div class="description" ng-show="row.toggles.0.descriptionActive">
           <div class="close-button" ng-click="showMoreToggle($event, $index, 0, true)">
             <div class="close-button-inner">
@@ -40,11 +40,11 @@
   <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 1)">
     <div class="flip-card" ng-class="{'transform':row.toggles.1.transform, 'not-flippable':row.toggles.1.notFlippable}">
 
-      <div class="front face">
+      <div class="front face flip-card__face">
         <img class="piece-image primary" ng-hide="row.toggles.1.hidePrimaryImg" src="{{row.1.primary_img}}" ng-mouseover="row.toggles.1.frontHover = true"  ng-mouseleave="row.toggles.1.frontHover = false"  />
       </div>
 
-      <div class="back face">
+      <div class="back face flip-card__face">
         <div class="description" ng-show="row.toggles.1.descriptionActive">
           <div class="close-button" ng-click="showMoreToggle($event, $index, 1, true)">
             <div class="close-button-inner">
@@ -76,11 +76,11 @@
   <div class="card-container-inner" ng-click="showMoreToggle($event, $index, 2)">
     <div class="flip-card" ng-class="{'transform':row.toggles.2.transform, 'not-flippable':row.toggles.2.notFlippable}">
 
-      <div class="front face">
+      <div class="front face flip-card__face">
         <img class="piece-image primary" ng-hide="row.toggles.2.hidePrimaryImg" src="{{row.2.primary_img}}" ng-mouseover="row.toggles.2.frontHover = true"  ng-mouseleave="row.toggles.2.frontHover = false"  />
       </div>
 
-      <div class="back face">
+      <div class="back face flip-card__face">
         <div class="description" ng-show="row.toggles.2.descriptionActive">
           <div class="close-button" ng-click="showMoreToggle($event, $index, 2, true)">
             <div class="close-button-inner">
