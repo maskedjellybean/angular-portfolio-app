@@ -1,12 +1,6 @@
 /* Fonts */
 
-@font-face {
-  font-family: 'walkway-expand';
-  src: url('../../../fonts/walkway_expand_black-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../../../fonts/walkway_expand_black-webfont.woff') format('woff'),
-       url('../../../fonts/walkway_expand_black-webfont.ttf')  format('truetype'),
-       url('../../../fonts/walkway_expand_black-webfont.svg#webfont') format('svg');
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
 
 /* General */
 
@@ -69,7 +63,8 @@ a:visited {
   margin: 0;
   padding: 0 3px 0 13px;
   border-bottom: 2px solid #999;
-  font-family: walkway-expand;
+  font-family: Raleway;
+  font-weight: 300;
 }
 
 .header .name h1 {
