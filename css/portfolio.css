@@ -412,6 +412,12 @@ x:-o-prefocus, .face {
   display: none;
 }
 
+@media screen and (max-width: 992px) {
+  .description {
+    padding: 15px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header-info {
     display: none;
@@ -419,7 +425,6 @@ x:-o-prefocus, .face {
 
   .mobile-row .description {
     height: auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 40px 15px;
   }
 }

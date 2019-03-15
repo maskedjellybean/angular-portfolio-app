@@ -36,7 +36,7 @@ a:visited {
 
 .header {
   max-width: 1370px;
-  height: 90px;
+  height: 110px;
   margin: 0 auto;
   padding: 20px 10px;
   z-index: 30;
@@ -44,17 +44,16 @@ a:visited {
 }
 
 .logo {
-  width: 100px;
+  width: 78px;
   float: left;
-}
-
-.logo img {
-  margin-top: -3px;
-  margin-left: -3px;
+  margin-top: -8px;
+  margin-left: 15px;
 }
 
 .header-info {
   float: right;
+  margin-top: 8px;
+  margin-right: 18px;
   font-size: .8em;
 }
 
@@ -122,4 +121,34 @@ a:visited {
 .flip-card > .front.face,
 .flip-card > .back.face {
   box-shadow: 0 14px 30px -8px #777777;
+}
+
+
+/* Description */
+
+.piece-title {
+  color: #207243;
+}
+
+@media screen and (max-width: 992px) {
+  .header-info {
+    margin-right: 0;
+  }
+
+  .logo {
+    margin-left: 5px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 80px;
+  }
+
+  .logo {
+    width: 55px;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
 }
