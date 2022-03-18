@@ -1,12 +1,6 @@
 /* Fonts */
 
-@font-face {
-  font-family: 'walkway-expand';
-  src: url('../../fonts/walkway_expand_black-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../../fonts/walkway_expand_black-webfont.woff') format('woff'),
-       url('../../fonts/walkway_expand_black-webfont.ttf')  format('truetype'),
-       url('../../fonts/walkway_expand_black-webfont.svg#webfont') format('svg');
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
 
 /* General */
 
@@ -16,16 +10,16 @@ body {
 }
 
 a {
-  color: #0E7DAA;
+  color: #207243;
 }
 a:visited {
-  color: #0E7DAA;
+  color: #207243;
 }
 
 /* Loading animation */
 
 .loading__animation {
-  background-color: #0E7DAA;
+  background-color: #207243;
 }
 
 .loading__text {
@@ -36,31 +30,30 @@ a:visited {
 
 .header-expand {
   width: 100%;
-  background: #067CA8;
+  background: #207243;
   box-shadow: 0 -5px 23px 5px #777;
 }
 
 .header {
   max-width: 1370px;
-  height: 90px;
+  height: 110px;
   margin: 0 auto;
   padding: 20px 10px;
   z-index: 30;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .logo {
-  width: 100px;
+  width: 78px;
   float: left;
-}
-
-.logo img {
-  margin-top: -3px;
-  margin-left: -3px;
+  margin-top: -8px;
+  margin-left: 15px;
 }
 
 .header-info {
   float: right;
+  margin-top: 5px;
+  margin-right: 18px;
   font-size: .8em;
 }
 
@@ -69,7 +62,8 @@ a:visited {
   margin: 0;
   padding: 0 3px 0 13px;
   border-bottom: 2px solid #999;
-  font-family: walkway-expand;
+  font-family: Raleway;
+  font-weight: 300;
 }
 
 .header .name h1 {
@@ -77,13 +71,26 @@ a:visited {
 }
 
 .first-name {
+  position: relative;
+  display: inline-block;
   margin-right: 10px;
-  padding-right: 10px;
-  border-right: #999999 solid 2px;
+  padding-bottom: 4px;
+  padding-right: 12px;
   color: white;
 }
 
+.first-name:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 35px;
+  width: 2px;
+  background-color: #999999;
+}
+
 .last-name {
+  display: inline-block;
   color: #B7B5B5;
 }
 
@@ -99,7 +106,7 @@ a:visited {
   float: left;
   padding: 5px 13px;
   list-style: none;
-  background: url(../../images/bullet.png) left center no-repeat;
+  background: url(../../../images/bullet.png) left center no-repeat;
   color: white;
 }
 
@@ -127,4 +134,34 @@ a:visited {
 .flip-card > .front.face,
 .flip-card > .back.face {
   box-shadow: 0 14px 30px -8px #777777;
+}
+
+
+/* Description */
+
+.piece-title {
+  color: #207243;
+}
+
+@media screen and (max-width: 992px) {
+  .header-info {
+    margin-right: 0;
+  }
+
+  .logo {
+    margin-left: 5px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 80px;
+  }
+
+  .logo {
+    width: 55px;
+    margin-top: -10px;
+    margin-left: 5px;
+  }
 }
