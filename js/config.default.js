@@ -7,6 +7,6 @@
 (function() {
   angular.module('portfolio')
   .config(function(appConfigProvider) {
-    appConfigProvider.createConfig('blt', 2, 'landscape', 'http://www.benteegarden.com/api/portfolio/blt/mk.jsonp?callback=JSON_CALLBACK', 'sites/all/themes/blt/angular-portfolio-app/');
+    appConfigProvider.createConfig('blt', 2, 'landscape', 'https://www.benteegarden.com/api/portfolio/blt/mk.jsonp?callback=JSON_CALLBACK', 'sites/all/themes/blt/angular-portfolio-app/');
   });
 })();
